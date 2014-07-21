@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.as.plugin.websearch.views.InternalView"
+            id="org.as.plugin.websearch.views.internalView"
+            name="Internal View Web Search"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.as.plugin.websearch.preferences.SearchPreferences"
+            id="org.as.plugin.websearch.preferences"
+            name="Web Search Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.as.plugin.websearch.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <menu
+               id="org.as.plugin.websearch.menu"
+               label="Web Search">
+<!--
+            <dynamic
+                  class="org.as.plugin.websearch.menu.ContributionItem"
+                  id="org.as.plugin.websearch.dynamicmenu">
+            </dynamic>
+-->
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            class="org.as.plugin.websearch.menu.ContributionItems"
+            locationURI="popup:org.as.plugin.websearch.menu">
+      </menuContribution>
+   </extension>
+   <extension
+         id="org.as.plugin.websearch.commands.menuCommands"
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.as.plugin.websearch.command.websearch"
+            name="Web Search">
+         <commandParameter
+               id="org.as.plugin.websearch.commandParameter"
+               name="configuration"
+               optional="true">
+         </commandParameter>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.as.plugin.websearch.handlers.WebsearchHandler"
+            commandId="org.as.plugin.websearch.command.websearch">
+      </handler>
+   </extension>
+
+</plugin>
